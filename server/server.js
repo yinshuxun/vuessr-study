@@ -12,7 +12,11 @@ server.get('*', (req, res) => {
     createRenderer({
         template: require('fs').readFileSync('index.html','utf-8')
     }).renderToString(app,{
-        title:"vuessr"
+        title:"vuessr",
+        meta:`
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+            <meta name ="viewport" content ="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no,width=device-width">
+        `
     } ,(err, html) => {
         if(err){
             console.log(err)
