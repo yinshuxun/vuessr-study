@@ -1,5 +1,5 @@
 <template>
-    <div>
-        hello ssr
-    </div>
+	<div>
+		Vue ssr demo
+	</div>
 </template>

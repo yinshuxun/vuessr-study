@@ -1,10 +1,10 @@
-import path from 'path'
-import vueConfig from './vue-loader.config.js'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+const path = require('path')
+const vueConfig = require('./vue-loader.config.js')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const isProd =  process.evn.NODE_ENV === 'production'
+const isProd =  process.env.NODE_ENV === 'production'
 
-export default {
+module.exports = {
   entry:{
     app:"../src/app.js"
   },
