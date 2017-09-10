@@ -53,7 +53,7 @@ const serve = (path, cache) => express.static(resolve(path), {
 
 app.use('/dist', serve('./dist', true))
 app.use('/public', serve('./public', true))
-app.use(favicon('./public/logo-48.png'))
+app.use(favicon('./public/logo.jpeg'))
 
 
 const render = (req, res) => {

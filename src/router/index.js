@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import CA from '../component/CA.vue'
+import CA from '../components/Calculator.vue'
 
 Vue.use(Router)
 

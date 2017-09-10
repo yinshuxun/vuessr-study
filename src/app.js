@@ -9,7 +9,8 @@ export const createApp = () => {
 	sync(store,router)
 
   const app = new Vue({
-    render: h => h(App)
+    render: h => h(App),
+		router
   })
 
   return {
