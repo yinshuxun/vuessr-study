@@ -1,9 +1,11 @@
 <template>
 	<div class="cal-wraper">
-		<div class="ab" @click="clickEv">-</div>
+		<div class="ab" @click="this.clickEv(-1)">-</div>
 		<input v-model="inputValue" placeholder="请输入数字"/>
 		<div class="ab">+</div>
 		<p>Message is: {{ inputValue }}</p>
+		<input v-model="message" placeholder="edit me">
+		<p>Message is: {{ message }}</p>
 	</div>
 </template>
 <style lang="stylus">

@@ -5,8 +5,8 @@ Vue.use(Vuex)
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const app ={
-	ctx :['http://local.xxbb.me:3000','http://xxbb.me:3000',][+isProd]
+const app = {
+	ctx: ['http://local.xxbb.me:3000', 'http://xxbb.me:3000',][+isProd]
 }
 
 const state = {
@@ -27,37 +27,38 @@ const getters = {
 	loading(state) {
 		return state.loading
 	},
-	app(state){
+	app(state) {
 		return state.app
 	}
 }
 
-
-export default new Vuex.Store({
-	state,
-	mutations: {
-		increment(state, num) {
-			state.count += num
-			state.steps.unshift('加上' + num)
+export const createStore = () => {
+	return new Vuex.Store({
+		state,
+		mutations: {
+			increment(state, num) {
+				state.count += num
+				state.steps.unshift('加上' + num)
+			},
+			reduce(state, num) {
+				state.count -= num
+				state.steps.unshift('减去' + num)
+			},
+			loading(state, lstate) {
+				state.loading = lstate
+			}
 		},
-		reduce(state, num) {
-			state.count -= num
-			state.steps.unshift('减去' + num)
+		actions: {
+			increment({commit}, num) {
+				commit('increment', num)
+			},
+			reduce({commit}, num) {
+				commit('reduce', num)
+			},
+			loading({commit}, lstate) {
+				commit('loading', lstate)
+			}
 		},
-		loading(state, lstate) {
-			state.loading = lstate
-		}
-	},
-	actions: {
-		increment({commit}, num) {
-			commit('increment', num)
-		},
-		reduce({commit}, num) {
-			commit('reduce', num)
-		},
-		loading({commit}, lstate) {
-			commit('loading', lstate)
-		}
-	},
-	getters
-})
+		getters
+	})
+}
