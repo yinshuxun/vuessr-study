@@ -37,6 +37,9 @@
 				this.inputValue = this.inputValue + val
 				console.log(this.inputValue)
 			}
-		}
+		},
+		asyncData ({ store, route: { params: { id }}}) {
+			return store.dispatch('FETCH_USER', { id })
+		},
 	}
 </script>

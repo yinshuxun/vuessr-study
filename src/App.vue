@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
 		<header>Vue ssr demo</header>
+		<router-link to="/live">to live</router-link>
 		<router-view class="view"></router-view>
 	</div>
 </template>
