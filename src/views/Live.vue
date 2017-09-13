@@ -1,11 +1,12 @@
 <template>
-	<div>
+	<div class="live-page">
 		<div>this is template body</div>
 	</div>
 </template>
 <style>
-	body {
-		background-color: #ff0000;
+	.live-page{
+		background: #f9f0eb;
+		min-height: 400px;
 	}
 </style>
 <script>
@@ -16,10 +17,8 @@
 			}
 		},
 		components: {},
-		asyncData() {
-			setTimeout(() => {
-				this.msg = 'hello vue2'
-			}, 1000)
+		asyncData({store, route: {params: {num}}}) {
+			return store.dispatch('increment', {num})
 		}
 	}
 </script>

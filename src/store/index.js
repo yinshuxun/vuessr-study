@@ -14,7 +14,8 @@ const state = {
 	count: 0,
 	steps: [],
 	loading: 'ing',
-	app
+	app,
+	tvList: []
 }
 
 const getters = {
@@ -29,6 +30,9 @@ const getters = {
 	},
 	app(state) {
 		return state.app
+	},
+	tvList(state){
+		return state.tvList
 	}
 }
 
