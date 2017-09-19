@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import http from 'axios'
 
 Vue.use(Vuex)
 
 const isProd = process.env.NODE_ENV === 'production'
 
 const app = {
-	ctx: ['http://local.xxbb.me:3000', 'http://xxbb.me:3000',][+isProd]
+	ctx: ['http://localhost:3000', 'http://localhost.me:3000',][+isProd]
 }
 
 const state = {
@@ -15,7 +16,9 @@ const state = {
 	steps: [],
 	loading: 'ing',
 	app,
-	tvList: []
+	tvList: [],
+	platforms: ['douyu', 'panda', 'longzhu'],
+	categories: ['lol', 'dota2', 'cf', 'dnf', 'beauty']
 }
 
 const getters = {
@@ -31,8 +34,14 @@ const getters = {
 	app(state) {
 		return state.app
 	},
-	tvList(state){
+	tvList(state) {
 		return state.tvList
+	},
+	platforms({platforms}) {
+		return platforms
+	},
+	categories({categories}) {
+		return categories
 	}
 }
 
@@ -50,6 +59,9 @@ export const createStore = () => {
 			},
 			loading(state, lstate) {
 				state.loading = lstate
+			},
+			getLiveList(state, list) {
+				state.tvList = list
 			}
 		},
 		actions: {
@@ -61,6 +73,15 @@ export const createStore = () => {
 			},
 			loading({commit}, lstate) {
 				commit('loading', lstate)
+			},
+			getLiveList({commit}, uri) {
+				return new Promise((resolve, reject) => {
+					http.get(`${app.ctx}${uri}`)
+						.then((response) => {
+							commit('getLiveList', response.data)
+							resolve(response)
+						})
+				})
 			}
 		},
 		getters

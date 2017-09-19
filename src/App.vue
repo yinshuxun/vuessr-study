@@ -19,6 +19,9 @@
 		overflow-y scroll
 		text-align center
 
+	*
+		box-sizing border-box
+
 	.fl
 		float left
 
